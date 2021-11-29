@@ -15,7 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+
+        return view('admin.clients.index', compact('clients'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
     }
 
     /**
@@ -34,9 +36,20 @@ class ClientController extends Controller
      * @param  \App\Http\Requests\StoreClientRequest  $request
      * @return \Illuminate\Http\Response
      */
+    //StoreClientRequest
     public function store(StoreClientRequest $request)
     {
-        //
+        $request->validated(
+            [
+                'client_dni' => 'required|max:8|unique:clients',
+                'client_name' => 'required|max:20',
+                'client_lastname' => 'required|max:20',
+                'client_phone' => 'required|max:20',
+                'client_address' => 'required|max:30',
+            ]
+        );
+        $client=Client::create($request->all());
+        return redirect()->route('clients.edit',$client)->with('info', 'Cliente creado correctamente');
     }
 
     /**
@@ -47,7 +60,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+       return view('admin.clients.show',compact('client'));
     }
 
     /**
@@ -58,7 +71,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit',compact('client'));
     }
 
     /**
@@ -68,9 +81,20 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
+    //UpdateClientRequest
     public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        $request->validated(
+            [
+                'client_dni' => 'required|max:8|unique:clients,client_dni,'.$client->uuid,
+                'client_name' => 'required|max:20',
+                'client_lastname' => 'required|max:20',
+                'client_phone' => 'required|max:20',
+                'client_address' => 'required|max:30',
+            ]
+        );
+          $client->update($request->all());
+        return redirect()->route('clients.edit',$client)->with('info', 'Cliente actualizado correctamente');
     }
 
     /**
@@ -81,6 +105,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('clients.index')->with('info', 'Cliente eliminado correctamente');
     }
 }

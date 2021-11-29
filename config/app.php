@@ -231,6 +231,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
     ],
-    
+
 
 ];

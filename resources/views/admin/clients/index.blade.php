@@ -14,19 +14,22 @@
         <strong>{{session('info')}}</strong>
     </div>
     @endif
-    
+
 <div class="card">
         <div class="card-header">
             <a class="btn btn-warning" href="{{route('clients.create')}}">Agregar Cliente</a>
         </div>
-    
+
     <div class="card-body">
         <table id="clientes" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>uuid</th>
+                    <th>DNI</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -34,15 +37,18 @@
             <tbody>
                 @foreach ($clients as $client)
                     <tr>
-                        <td>{{$client->id}}</td>
+                        <td>{{$client->uuid}}</td>
+                        <td>{{$client->client_dni}}</td>
                         <td>{{$client->client_name}}</td>
                         <td>{{$client->client_lastname}}</td>
+                        <td>{{$client->client_phone}}</td>
+                        <td>{{$client->client_address}}</td>
                         
                         <td width="10px">
                             <a href={{ route('clients.edit',$client) }} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a >
-                        </td> 
-                       
-                        <td width="10px"> 
+                        </td>
+
+                        <td width="10px">
                               <form action="{{route('clients.destroy',$client) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
@@ -58,7 +64,7 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css"> 
+<link rel="stylesheet" href="/css/admin_custom.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="sweetalert2.min.css">
@@ -67,16 +73,16 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css"/>
 
 <style type="text/css">
-    div.dt-button-collection button.dt-button:active:not(.disabled), 
-    div.dt-button-collection button.dt-button.active:not(.disabled), 
-    div.dt-button-collection div.dt-button:active:not(.disabled), 
-    div.dt-button-collection div.dt-button.active:not(.disabled), 
-    div.dt-button-collection a.dt-button:active:not(.disabled), 
-    div.dt-button-collection a.dt-button.active:not(.disabled) 
+    div.dt-button-collection button.dt-button:active:not(.disabled),
+    div.dt-button-collection button.dt-button.active:not(.disabled),
+    div.dt-button-collection div.dt-button:active:not(.disabled),
+    div.dt-button-collection div.dt-button.active:not(.disabled),
+    div.dt-button-collection a.dt-button:active:not(.disabled),
+    div.dt-button-collection a.dt-button.active:not(.disabled)
         {
-            background-color:#343A40; 
+            background-color:#343A40;
         }
-        .page-item.active .page-link 
+        .page-item.active .page-link
         {
             z-index: 3;
             color: #fff;
@@ -114,14 +120,14 @@
                 }
                 })
             });
-</script>    
+</script>
                  {{-- PARA LA TABLA --}}
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>  
-                
+                <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
                 <script>
-                    $(document).ready(function() 
+                    $(document).ready(function()
                     {
                         $('#clientes').DataTable({
                             dom: 'Bfrtip',
@@ -151,20 +157,20 @@
                                             className:'btn btn-danger',
                                             exportOptions: { columns: ':visible'}
                                             }
-                                            , 
+                                            ,
                                             { extend:'print',
                                             text:'<i class="fas fa-print"></i>',
                                             titleAttr:'Imprimir',
                                             className:'btn btn-info',
                                             exportOptions: { columns: ':visible'}
-                                            }  
+                                            }
                                         ],
                                         columnDefs:
                                              [
                                                 {
                                                 targets: -1,
                                                 visible: false
-                                                } 
+                                                }
                                             ] ,
                                           language:
                                           {
@@ -346,13 +352,13 @@
                                     }
                                 },
                                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
-                                        }   
+                                        }
                             }
-            
+
                         );
                     });
-            </script>           
-       
+            </script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
