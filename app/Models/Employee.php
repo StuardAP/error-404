@@ -17,7 +17,7 @@ class Employee extends Model
 
      public function administrators()
     {
-        return $this->hasMany(Administrator::class,'administrator_id');
+        return $this->hasMany(Administrator::class,'employee_name');
     }
 
      public function developers()
@@ -38,6 +38,10 @@ class Employee extends Model
      public function projects()
     {
         return $this->hasMany('App\Models\Project');
+    }
+    public function sale_receipts()
+    {
+        return $this->hasMany(SaleReceipt::class);
     }
 
 }

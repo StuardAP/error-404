@@ -2,10 +2,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @extends('adminlte::page')
 
-@section('title', 'Clientes | Lista ')
+@section('title', 'Servcicios | Lista ')
 
 @section('content_header')
-    <h1>Lista de Clientes</h1>
+    <h1>Lista de Servicios</h1>
 @stop
 
 @section('content')
@@ -17,39 +17,38 @@
 
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('clients.create')}}">Agregar Cliente</a>
+            <a class="btn btn-warning" href="{{route('services.create')}}">Agregar servicios</a>
+            <a class="btn btn-primary" href="{{route('categories.index')}}">Categorías</a>
         </div>
 
     <div class="card-body">
-        <table id="clientes" class="table table-striped table-bordered" style="width:100%">
+        <table id="servicees" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>DNI</th>
+                    <th>Categoría</th>
                     <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
+                    <th>Duración</th>
+                    <th>Costo</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clients as $client)
+                @foreach ($services as $service)
                     <tr>
-                        <td>{{$client->uuid}}</td>
-                        <td>{{$client->client_dni}}</td>
-                        <td>{{$client->client_name}}</td>
-                        <td>{{$client->client_lastname}}</td>
-                        <td>{{$client->client_phone}}</td>
-                        <td>{{$client->client_address}}</td>
+                        <td>{{$service->uuid}}</td>
+                        <td>{{$service->categories['category_name']}}</td>
+                        <td>{{$service->service_name}}</td>
+                        <td>{{$service->service_duration}}</td>
+                        <td>{{$service->service_cost}}</td>
 
                         <td width="10px">
-                            <a href={{ route('clients.edit',$client) }} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a >
+                            <a href={{ route('services.edit',$service) }} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a >
                         </td>
 
                         <td width="10px">
-                              <form action="{{route('clients.destroy',$client) }}" method="post"  class="eliminar">
+                              <form action="{{route('services.destroy',$service) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit"  value="Borrar" class="btn btn-danger btn-sm">
@@ -129,7 +128,7 @@
                 <script>
                     $(document).ready(function()
                     {
-                        $('#clientes').DataTable({
+                        $('#servicees').DataTable({
                             dom: 'Bfrtip',
                                     buttons:
                                          [   {  extend:'colvis',

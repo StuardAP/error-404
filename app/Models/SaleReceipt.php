@@ -19,6 +19,15 @@ class SaleReceipt extends Model
     }
     public function administrator()
     {
-        return $this->belongsTo(Administrator::class, 'administrator_id');
+        return $this->belongsTo(Administrator::class,'administrator_id');
+    }
+
+    public function clients()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'administrator_id');
     }
 }

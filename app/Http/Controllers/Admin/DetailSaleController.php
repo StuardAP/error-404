@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Detail_Sale;
+use App\Models\DetailSale;
+use App\Models\Service;
 use App\Http\Requests\StoreDetail_SaleRequest;
 use App\Http\Requests\UpdateDetail_SaleRequest;
 
@@ -15,7 +16,8 @@ class DetailSaleController extends Controller
      */
     public function index()
     {
-        //
+        $detail_sales = DetailSale::all();
+        return view('admin.detail-sale.index', compact('detail_sales'));
     }
 
     /**
@@ -36,7 +38,8 @@ class DetailSaleController extends Controller
      */
     public function store(StoreDetail_SaleRequest $request)
     {
-        //
+        $detail_sale=DetailSale::create($request->all());
+        return redirect()->route('admin.detail-sale.index')->with('success', 'Thêm chi tiết bán hàng thành công');
     }
 
     /**
@@ -56,9 +59,10 @@ class DetailSaleController extends Controller
      * @param  \App\Models\Detail_Sale  $detail_Sale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Detail_Sale $detail_Sale)
+    public function edit(DetailSale $detail_sale)
     {
-        //
+        $services = Service::all()->pluck('service_name', 'uuid');
+        return view('admin.detail-sale.edit', compact('detail_sale', 'services'));
     }
 
     /**
@@ -68,9 +72,10 @@ class DetailSaleController extends Controller
      * @param  \App\Models\Detail_Sale  $detail_Sale
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDetail_SaleRequest $request, Detail_Sale $detail_Sale)
+    public function update(UpdateDetail_SaleRequest $request, DetailSale $detail_sale)
     {
-        //
+        $detail_sale->update($request->all());
+        return redirect()->route('detail-sale.edit', $detail_sale)->with('info', 'Se ha actualizado el detalle de venta con éxito');
     }
 
     /**
@@ -79,8 +84,9 @@ class DetailSaleController extends Controller
      * @param  \App\Models\Detail_Sale  $detail_Sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Detail_Sale $detail_Sale)
+    public function destroy(DetailSale $detail_sale)
     {
-        //
+        $detail_sale->delete();
+        return redirect()->route('detail-sale.index')->with('info', 'Se ha eliminado el detalle de venta correctamente');
     }
 }

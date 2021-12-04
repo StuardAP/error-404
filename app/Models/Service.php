@@ -13,9 +13,9 @@ class Service extends Model
     protected $primaryKey='uuid';
      protected $fillable =['uuid','category_id','service_name','service_duration','service_cost'];
     protected $table = 'services';
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo('App\Models\Category','category_id');
+        return $this->belongsTo(Category::class,'category_id');
     }
     public function detail_sale()
     {

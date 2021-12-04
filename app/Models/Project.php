@@ -14,12 +14,12 @@ class Project extends Model
      protected $fillable = ['uuid','employee_id','client_id','project_comments','project_start','project_final','project_status'];
      protected $table = 'projects';
 
-     public function employee()
+     public function employees()
     {
         return $this->belongsTo('App\Models\Employee','employee_id');
     }
 
-     public function client()
+     public function clients()
     {
         return $this->belongsTo('App\Models\Client','client_id');
     }

@@ -15,10 +15,10 @@ class DetailProject extends Model
     protected $table = 'detail_projects';
     public function project()
     {
-        return $this->belongsTo('App\Models\Project','project_id');
+        return $this->belongsTo(Project::class,'project_id');
     }
     public function service()
     {
-        return $this->belongsTo('App\Models\Service','service_id');
+        return $this->belongsTo(Service::class,'service_id');
     }
 }

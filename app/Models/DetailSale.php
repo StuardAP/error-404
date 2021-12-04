@@ -17,8 +17,8 @@ class DetailSale extends Model
     {
         return $this->belongsTo('App\Models\SaleReceipt','sales_receipts_id');
     }
-    public function services()
+    public function service()
     {
-        return $this->belongsTo('App\Models\Service','service_id');
+        return $this->belongsTo(Service::class,'service_id');
     }
 }

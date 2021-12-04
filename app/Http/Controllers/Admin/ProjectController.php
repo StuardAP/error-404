@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Project;
+use App\Models\Employee;
+use App\Models\Client;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -14,7 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -24,7 +27,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $employees = Employee::all()->pluck('employee_name', 'uuid');
+        $clients = Client::all()->pluck('client_name', 'uuid');
+        return view('admin.projects.create', compact('employees', 'clients'));
     }
 
     /**
@@ -35,7 +40,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $project = Project::create($request->all());
+        return redirect()->route('projects.index')->with('info', 'Project created successfully');
     }
 
     /**
@@ -46,7 +52,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -57,7 +63,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $employees = Employee::all()->pluck('employee_name', 'uuid');
+        $clients = Client::all()->pluck('client_name', 'uuid');
+        return view('admin.projects.edit', compact('project', 'employees', 'clients'));
     }
 
     /**
@@ -69,7 +77,8 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $project->update($request->all());
+        return redirect()->route('projects.index')->with('info', 'Project updated successfully');
     }
 
     /**
@@ -80,6 +89,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index')->with('info', 'Project deleted successfully');
     }
 }

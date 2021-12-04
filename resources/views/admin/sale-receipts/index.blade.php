@@ -2,10 +2,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @extends('adminlte::page')
 
-@section('title', 'Clientes | Lista ')
+@section('title', 'Boletas | Lista ')
 
 @section('content_header')
-    <h1>Lista de Clientes</h1>
+    <h1>LISTA DE BOLETAS</h1>
 @stop
 
 @section('content')
@@ -17,46 +17,42 @@
 
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('clients.create')}}">Agregar Cliente</a>
+            <a class="btn btn-warning" href="{{route('detail-sale.index')}}">DETALLE BOLETAS</a>
         </div>
 
     <div class="card-body">
-        <table id="clientes" class="table table-striped table-bordered" style="width:100%">
+        <table id="projectes" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>DNI</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
+                    <th>Adminitrator</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clients as $client)
-                    <tr>
-                        <td>{{$client->uuid}}</td>
-                        <td>{{$client->client_dni}}</td>
-                        <td>{{$client->client_name}}</td>
-                        <td>{{$client->client_lastname}}</td>
-                        <td>{{$client->client_phone}}</td>
-                        <td>{{$client->client_address}}</td>
+
+                    @foreach ($sale_receipts as $sale_receipt)
+                        <td>{{$sale_receipt->sale_num}}</td>
+                        <td>{{$sale_receipt->employee['employee_name']}}</td>
+                        <td>{{$sale_receipt->clients['client_name']}}</td>
+                        <td>{{$sale_receipt->sales_receipts_date}}</td>
 
                         <td width="10px">
-                            <a href={{ route('clients.edit',$client) }} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a >
+                            <a href={{route('sale-receipts.edit',$sale_receipt) }} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a >
                         </td>
 
                         <td width="10px">
-                              <form action="{{route('clients.destroy',$client) }}" method="post"  class="eliminar">
+                              <form action="{{route('sale-receipts.destroy',$sale_receipt) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit"  value="Borrar" class="btn btn-danger btn-sm">
                               </form>
                         </td>
                     </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </div>
@@ -96,30 +92,48 @@
 @push('js')
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script>
+<script>
+    $('.eliminar').submit(function(e)
+    { e.preventDefault();
 
-        $('.eliminar').submit(function(e)
-        {
-            e.preventDefault();
                 Swal.fire({
-                title: '¿Estas seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                    '¡Eliminado!',
-                    'Su archivo ha sido eliminado',
-                    'success'
-                    )
-                    this.submit();
+                title: 'CÓDIGO',
+                html: `<input type="password" id="password" class="swal2-input" placeholder="ZXCVBNMELDTERTYFGRTD">`,
+                confirmButtonText: 'Acceder',
+                showCloseButton: true,
+                focusConfirm: false,
+                preConfirm: () => {
+                    const password = Swal.getPopup().querySelector('#password').value
+                    if (!password) {
+                        Swal.showValidationMessage(`Ingrese su código`)
+                    }
+                    else if(password!=='QAZWSX')
+                    {
+                        Swal.showValidationMessage(`Código no válido`)
+                    }
+                    return {password:password}
                 }
+                }).then((result) => {
+                             Swal.fire({
+                                            title: '¿Estas seguro?',
+                                            text: "¡No podrás revertir esto!",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Sí, eliminar'
+                                            }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                Swal.fire(
+                                                '¡Eliminado!',
+                                                'Su archivo ha sido eliminado',
+                                                'success'
+                                                )
+                                                this.submit();
+                                                }
+                                        })
                 })
-            });
+    });
 </script>
                  {{-- PARA LA TABLA --}}
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -129,7 +143,7 @@
                 <script>
                     $(document).ready(function()
                     {
-                        $('#clientes').DataTable({
+                        $('#projectes').DataTable({
                             dom: 'Bfrtip',
                                     buttons:
                                          [   {  extend:'colvis',

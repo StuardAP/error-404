@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -73,8 +73,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' =>true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -110,12 +110,12 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-white',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-info elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -176,7 +176,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'welcome',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -229,51 +229,70 @@ return [
             'text' => 'buscar',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-
-
-        [
             'text' => 'Clients',
             'route'  => 'clients.index',
             'icon'    => 'fas fa-fw fa-users',
             'icon_color' => 'light',
 
         ],
-        // [
-        //     'text' => 'Advances',
-        //     'route'  => 'advances.index',
-        //     'icon'    => 'fas fa-fw fa-calendar-alt',
-        //     'icon_color' => 'light',
+        [
+            'text' => 'Servicios',
+            'icon'    => 'fas fa-fw fa-calendar-check',
+            'icon_color' => 'light',
+            'route'  => 'services.index',
+            'submenu' =>
+            [
+                 [
+                    'text' => 'Nuevo Servicio',
+                    'route'  => 'services.create',
+                    'icon'    => 'fas fa-fw fa-plus',
+                    'icon_color' => 'light',
+                ],
+                [
+                    'text' => 'Lista de Servicios',
+                    'route'  => 'services.index',
+                    'icon'    => 'fas fa-fw fa-list',
+                    'icon_color' => 'light',
+                ],
 
-        // ],
-        // [
-        //     'text' => 'Develops',
-        //     'route'  => 'develops.index',
-        //     'icon'    => 'fas fa-fw fa-laptop-code',
-        //     'icon_color' => 'light',
-        // ],
-        // [
-        //     'text' => 'Marketing',
-        //     'route'  => 'marketings.index',
-        //     'icon'    => 'fas fa-fw fa-bullhorn',
-        //     'icon_color' => 'danger',
-        // ],
-        // [
-        //     'text' => 'Design',
-        //     'route'  => 'designs.index',
-        //     'icon'    => 'fas fa-fw fa-palette',
-        //     'icon_color' => 'warning',
-        // ],
-        // [
-        //     'text' => 'Sales tickets',
-        //     'route'  => 'bills.index',
-        //     'icon'    => 'fas fa-fw fa-cash-register',
-        //     'icon_color' => 'success',
-        // ],
-
+             ],
+    ],
+        //PROYECTOS
+        [
+            'text' => 'Projectos',
+            'icon' => 'fas fa-fw fa-laptop-code',
+            'icon_color' => 'light',
+            'submenu' =>
+            [
+                [
+                    'text' => 'Nuevo Proyecto',
+                    'route'  => 'projects.create',
+                    'icon'    => 'fas fa-fw fa-plus',
+                    'icon_color' => 'light',
+                ],
+                [
+                    'text' => 'Lista de Proyectos',
+                    'route'  => 'projects.index',
+                    'icon'    => 'fas fa-fw fa-list',
+                    'icon_color' => 'light',
+                ],
+            ],
+        ],
+        //BOLETAS
+        [
+            'text' => 'Boletas',
+            'icon' => 'fas fa-fw fa-ticket-alt',
+            'icon_color' => 'light',
+            'submenu' =>
+            [
+                [
+                    'text' => 'Lista de Boletos',
+                    'route'  => 'sale-receipts.index',
+                    'icon'    => 'fas fa-fw fa-list',
+                    'icon_color' => 'light',
+                ],
+            ],
+        ],
 
     ],
 

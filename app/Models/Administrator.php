@@ -21,6 +21,6 @@ class Administrator extends Model
     }
     public function sales_receipts()
     {
-        return $this->hasMany(SaleReceipt::class,'administrator_id');
+        return $this->hasMany(SaleReceipt::class);
     }
 }
