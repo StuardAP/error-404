@@ -2,10 +2,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Diseño | Lista ')
+@section('title', 'Empleados | Lista ')
 
 @section('content_header')
-    <h1>Lista de Diseños</h1>
+    <h1>Lista de Empleados</h1>
 @stop
 
 @section('content')
@@ -18,35 +18,43 @@
    
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('designs.create')}}">Agregar diseño</a>
+            <a class="btn btn-warning" href="{{route('employee.create')}}">Agregar empleado</a>
         </div>
     
     <div class="card-body">
         <table  id="designs_T" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Tiempo</th>
-                    <th>Costo</th>
+                    <th>uuid</th>
+                    <th>DNI</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Salary</th>
+                    <th>Profession</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($designs as $design)
+                @foreach ($employee as $employer)
                     <tr>
-                        <td>{{$design->id}}</td>
-                        <td>{{$design->design_name}}</td>
-                        <td>{{$design->design_time}}</td>
-                        <td>{{$design->design_cost}}</td>
-                        
+                        <td>{{$employer->uuid}}</td>
+                        <td>{{$employer->employee_dni}}</td>
+                        <td>{{$employer->employee_name}}</td>
+                        <td>{{$employer->employee_lastname}}</td>
+                        <td>{{$employer->employee_phone}}</td>
+                        <td>{{$employer->employee_email}}</td>
+                        <td>{{$employer->employee_salary}}</td>
+                        <td>{{$employer->employee_profession}}</td>
+
                         <td width="10px">
-                            <a href={{ route('designs.edit',$design)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
+                            <a href={{ route('employee.edit',$employer)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
                         </td> 
                        
                         <td width="10px"> 
-                              <form action="{{route('designs.destroy',$design) }}" method="post"  class="eliminar">
+                              <form action="{{route('employee.destroy',$employer) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit" value="Borrar" class="btn btn-danger btn-sm">

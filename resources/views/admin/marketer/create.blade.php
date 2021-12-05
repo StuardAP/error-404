@@ -1,40 +1,32 @@
 @extends('adminlte::page')
 
-@section('title', 'Desarrollo | Crear')
+@section('title', 'Marketing| Crear')
 
 @section('content_header')
-    <h1>Añadir Desarrollo</h1>
+    <h1>Añadir Marketing</h1>
 @stop
 
 @section('content')
         <div class="card">
             <div class="card-body">
-                {!! Form::open(['route'=>'develops.store']) !!}
+                {!! Form::open(['route'=>'marketer.store']) !!}
                     <div class="form-group">
-                        {!! Form::label('develop_name', 'Nombre') !!}
-                        {!! Form::text('develop_name', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtext(event);']) !!}
+                        {!! Form::label('marketer_analysis', 'Analisis') !!}
+                        {!! Form::text('marketer_analysis', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtext(event);']) !!}
                   
-                        @error('develop_name')
+                        @error('marketer_analysis')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     
                     </div>
                     <div class="form-group">
-                        {!! Form::label('develop_time', 'Tiempo') !!}
-                        {!! Form::text('develop_time', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo','onkeypress'=>'return  Vnum(event);']) !!}
+                        {!! Form::label('marketer_planning', 'Plan') !!}
+                        {!! Form::text('marketer_planning', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo','onkeypress'=>'return  Vnum(event);']) !!}
                        
-                        @error('develop_time')
+                        @error('marketer_planning')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('develop_cost', 'Costo') !!}
-                        {!! Form::text('develop_cost', null, ['class'=>'form-control','placeholder'=>'Ingrese el un costo','onkeypress'=>'return  Vnum(event);']) !!}
-                        
-                        @error('develop_cost')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
                     </div>
                     {!! Form::submit('Agregar Desarrollo', ['class'=>'btn btn-success']) !!}
                 {!! Form::close() !!}
@@ -48,8 +40,6 @@
 @stop
 
 @section('js')
-
-
     <script> 
         function Vnum(evt)
             {

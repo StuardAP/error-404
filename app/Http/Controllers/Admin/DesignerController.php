@@ -15,7 +15,9 @@ class DesignerController extends Controller
      */
     public function index()
     {
-        //
+        $designer = Designer::all();
+
+        return view('admin.designer.index', compact('designer'));
     }
 
     /**
@@ -25,7 +27,7 @@ class DesignerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.designer.create');
     }
 
     /**
@@ -36,7 +38,14 @@ class DesignerController extends Controller
      */
     public function store(StoreDesignerRequest $request)
     {
-        //
+        $request->validated(
+            [
+                'designer_creativity' => 'required|max:20',
+                'designer_detailer' => 'required|max:20'
+            ]
+        );
+        $designer=Designer::create($request->all());
+        return redirect()->route('designer.edit',$designer)->with('info', 'Diseñador creado correctamente');
     }
 
     /**
@@ -47,7 +56,7 @@ class DesignerController extends Controller
      */
     public function show(Designer $designer)
     {
-        //
+        return view('admin.designer.show',compact('designer'));
     }
 
     /**
@@ -58,7 +67,7 @@ class DesignerController extends Controller
      */
     public function edit(Designer $designer)
     {
-        //
+        return view('admin.designer.edit',compact('designer'));
     }
 
     /**
@@ -70,7 +79,14 @@ class DesignerController extends Controller
      */
     public function update(UpdateDesignerRequest $request, Designer $designer)
     {
-        //
+        $request->validated(
+            [
+                'designer_creativity' => 'required|max:20',
+                'designer_detailer' => 'required|max:20'
+            ]
+        );
+        $designer->update($request->all());
+        return redirect()->route('designer.edit',$designer)->with('info', 'Diseñador actualizado correctamente');
     }
 
     /**
@@ -81,6 +97,7 @@ class DesignerController extends Controller
      */
     public function destroy(Designer $designer)
     {
-        //
+        $designer->delete();
+        return redirect()->route('designer.index')->with('info', 'Diseñador eliminado correctamente');
     }
 }

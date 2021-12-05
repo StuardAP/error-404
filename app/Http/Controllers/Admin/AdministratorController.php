@@ -15,7 +15,9 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        //
+        $administrator = Administrator::all();
+
+        return view('admin.administrator.index', compact('administrator'));
     }
 
     /**
@@ -25,7 +27,7 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.employee.create');
     }
 
     /**
@@ -36,7 +38,13 @@ class AdministratorController extends Controller
      */
     public function store(StoreAdministratorRequest $request)
     {
-        //
+        $request->validated(
+            [
+                'administrator_discipline' => 'required|max:20'
+            ]
+        );
+        $administrator=Administrator::create($request->all());
+        return redirect()->route('administrator.edit',$administrator)->with('info', 'Administrador creado correctamente');
     }
 
     /**
@@ -47,7 +55,7 @@ class AdministratorController extends Controller
      */
     public function show(Administrator $administrator)
     {
-        //
+        return view('admin.administrator.show',compact('administrator'));
     }
 
     /**
@@ -58,7 +66,7 @@ class AdministratorController extends Controller
      */
     public function edit(Administrator $administrator)
     {
-        //
+        return view('admin.administrator.edit',compact('administrator'));
     }
 
     /**
@@ -70,7 +78,13 @@ class AdministratorController extends Controller
      */
     public function update(UpdateAdministratorRequest $request, Administrator $administrator)
     {
-        //
+        $request->validated(
+            [
+                'administrator_discipline' => 'required|max:20'
+            ]
+        );
+        $administrator->update($request->all());
+        return redirect()->route('administrator.edit',$administrator)->with('info', 'Administrador actualizado correctamente');
     }
 
     /**
@@ -81,6 +95,7 @@ class AdministratorController extends Controller
      */
     public function destroy(Administrator $administrator)
     {
-        //
+        $administrator->delete();
+        return redirect()->route('administrator.index')->with('info', 'Administrador eliminado correctamente');
     }
 }

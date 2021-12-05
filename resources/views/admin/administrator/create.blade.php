@@ -1,42 +1,37 @@
 @extends('adminlte::page')
 
-@section('title', 'Diseños | Crear')
+@section('title', 'Administrator| Asignar')
 
 @section('content_header')
-    <h1>Añadir Diseño</h1>
+    <h1>Asignar Administrador</h1>
 @stop
 
 @section('content')
+    @if(session('info'))
+    <div class="alert alert-success" role="alert">
+        <strong>{{session('info')}}</strong>
+    </div>
+    @endif
         <div class="card">
             <div class="card-body">
-                {!! Form::open(['route'=>'designs.store']) !!}
-                    <div class="form-group">
-                        {!! Form::label('design_name', 'Nombre') !!}
-                        {!! Form::text('design_name', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtext(event);']) !!}
-                  
-                        @error('design_name')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('design_time', 'Tiempo') !!}
-                        {!! Form::text('design_time', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo','onkeypress'=>'return  Vnum(event);']) !!}
-                       
-                        @error('design_time')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('design_cost', 'Costo') !!}
-                        {!! Form::text('design_cost', null, ['class'=>'form-control','placeholder'=>'Ingrese el un costo','onkeypress'=>'return  Vnum(event);']) !!}
-                        
-                        @error('design_cost')
+                {!! Form::open(['route'=>'administrator.store']) !!}
+                <div class="form-group">
+                        {!! Form::label('administrator_id', 'Administrator') !!}
+                        {!! Form::text('administrator_id', null, ['class'=>'form-control','placeholder'=>'Ingrese el id','onkeypress'=>'return  Vtext(event);']) !!}
+
+                        @error('administrator_id')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    {!! Form::submit('Agregar Diseño', ['class'=>'btn btn-success']) !!}
+                    <div class="form-group">
+                        {!! Form::label('administrator_discipline', 'Administrator') !!}
+                        {!! Form::text('administrator_discipline', null, ['class'=>'form-control','placeholder'=>'Ingrese el administrator','onkeypress'=>'return  Vtext(event);']) !!}
+
+                        @error('administrator_discipline')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    {!! Form::submit('Asignar', ['class'=>'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

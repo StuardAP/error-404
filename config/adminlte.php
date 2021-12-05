@@ -249,24 +249,36 @@ return [
         //     'icon_color' => 'light',
 
         // ],
-        // [
-        //     'text' => 'Develops',
-        //     'route'  => 'develops.index',
-        //     'icon'    => 'fas fa-fw fa-laptop-code',
-        //     'icon_color' => 'light',
-        // ],
-        // [
-        //     'text' => 'Marketing',
-        //     'route'  => 'marketings.index',
-        //     'icon'    => 'fas fa-fw fa-bullhorn',
-        //     'icon_color' => 'danger',
-        // ],
-        // [
-        //     'text' => 'Design',
-        //     'route'  => 'designs.index',
-        //     'icon'    => 'fas fa-fw fa-palette',
-        //     'icon_color' => 'warning',
-        // ],
+         [
+             'text' => 'Developers',
+             'route'  => 'developer.index',
+             'icon'    => 'fas fa-fw fa-laptop-code',
+             'icon_color' => 'light',
+         ],
+         [
+             'text' => 'Marketers',
+             'route'  => 'marketer.index',
+             'icon'    => 'fas fa-fw fa-bullhorn',
+             'icon_color' => 'danger',
+         ],
+         [
+             'text' => 'Designers',
+             'route'  => 'designer.index',
+             'icon'    => 'fas fa-fw fa-palette',
+             'icon_color' => 'warning',
+         ],
+         [
+             'text' => 'Administrators',
+             'route'  => 'administrator.index',
+             'icon'    => 'fas fa-fw fa-cash-register',
+             'icon_color' => 'success',
+         ],
+         [
+             'text' => 'Employees',
+             'route'  => 'employee.index',
+             'icon'    => 'fas fa-fw fa-cash-register',
+             'icon_color' => 'success',
+         ],
         // [
         //     'text' => 'Sales tickets',
         //     'route'  => 'bills.index',

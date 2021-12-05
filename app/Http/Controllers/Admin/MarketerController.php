@@ -15,7 +15,9 @@ class MarketerController extends Controller
      */
     public function index()
     {
-        //
+        $marketer = Marketer::all();
+
+        return view('admin.marketer.index', compact('marketer'));
     }
 
     /**
@@ -25,7 +27,7 @@ class MarketerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.marketer.create');
     }
 
     /**
@@ -36,7 +38,14 @@ class MarketerController extends Controller
      */
     public function store(StoreMarketerRequest $request)
     {
-        //
+        $request->validated(
+            [
+                'marketer_analysis' => 'required|max:20',
+                'marketer_planning' => 'required|max:30'
+            ]
+        );
+        $marketer=Marketer::create($request->all());
+        return redirect()->route('marketer.edit',$marketer)->with('info', 'Comercializador creado correctamente');
     }
 
     /**
@@ -47,7 +56,7 @@ class MarketerController extends Controller
      */
     public function show(Marketer $marketer)
     {
-        //
+        return view('admin.marketer.show',compact('marketer'));
     }
 
     /**
@@ -58,7 +67,7 @@ class MarketerController extends Controller
      */
     public function edit(Marketer $marketer)
     {
-        //
+        return view('admin.marketer.edit',compact('marketer'));
     }
 
     /**
@@ -70,7 +79,14 @@ class MarketerController extends Controller
      */
     public function update(UpdateMarketerRequest $request, Marketer $marketer)
     {
-        //
+        $request->validated(
+            [
+                'marketer_analysis' => 'required|max:20',
+                'marketer_planning' => 'required|max:30'
+            ]
+        );
+        $marketer->update($request->all());
+        return redirect()->route('marketer.edit',$marketer)->with('info', 'Comercializador actualizado correctamente');
     }
 
     /**
@@ -81,6 +97,7 @@ class MarketerController extends Controller
      */
     public function destroy(Marketer $marketer)
     {
-        //
+        $marketer->delete();
+        return redirect()->route('marketer.index')->with('info', 'Comercializador eliminado correctamente');
     }
 }

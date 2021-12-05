@@ -15,7 +15,9 @@ class DeveloperController extends Controller
      */
     public function index()
     {
-        //
+        $developer = Developer::all();
+
+        return view('admin.developer.index', compact('developer'));
     }
 
     /**
@@ -25,7 +27,7 @@ class DeveloperController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.developer.create');
     }
 
     /**
@@ -36,7 +38,13 @@ class DeveloperController extends Controller
      */
     public function store(StoreDeveloperRequest $request)
     {
-        //
+        $request->validated(
+            [
+                'developer_languages' => 'required|max:20'
+            ]
+        );
+        $developer=Developer::create($request->all());
+        return redirect()->route('developer.edit',$developer)->with('info', 'Desarrollador creado correctamente');
     }
 
     /**
@@ -47,7 +55,7 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        //
+        return view('admin.developer.show',compact('developer'));
     }
 
     /**
@@ -58,7 +66,7 @@ class DeveloperController extends Controller
      */
     public function edit(Developer $developer)
     {
-        //
+        return view('admin.developer.edit',compact('developer'));
     }
 
     /**
@@ -70,17 +78,24 @@ class DeveloperController extends Controller
      */
     public function update(UpdateDeveloperRequest $request, Developer $developer)
     {
-        //
+        $request->validated(
+            [
+                'developer_languages' => 'required|max:20'
+            ]
+        );
+        $developer->update($request->all());
+        return redirect()->route('developer.edit',$developer)->with('info', 'Desarrollador actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Developer  $developer
+     * @param  \App\Models\Developer  $develop
      * @return \Illuminate\Http\Response
      */
     public function destroy(Developer $developer)
     {
-        //
+        $developer->delete();
+        return redirect()->route('developer.index')->with('info', 'Desarrollador eliminado correctamente');
     }
 }

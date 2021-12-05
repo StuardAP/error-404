@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Diseño | Editar')
+@section('title', 'Marketing | Editar')
 
 @section('content_header')
-    <h1>Editar Diseño</h1>
+    <h1>Editar Marketing</h1>
 @stop
 
 @section('content')
@@ -14,31 +14,22 @@
     @endif
 <div class="card">
     <div class="card-body">
-        {!! Form::model($design,['route'=>['designs.update',$design],'method'=>'put']) !!}
-        
+        {!! Form::model($marketer,['route'=>['marketer.update',$marketer],'method'=>'put']) !!}
+
         <div class="form-group">
-            {!! Form::label('design_name', 'Nombre') !!}
-            {!! Form::text('design_name', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtxt(event);']) !!}
-      
-            @error('design_name')
-                <span class="text-danger">{{$message}}</span>
-            @enderror
-        
-        </div>
-        <div class="form-group">
-            {!! Form::label('design_time', 'Tiempo') !!}
-            {!! Form::text('design_time', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo en semanas','onkeypress'=>'return  Vnum(event);']) !!}
+            {!! Form::label('marketer_analysis', 'Analisis') !!}
+            {!! Form::text('marketer_analysis', null, ['class'=>'form-control','placeholder'=>'Ingrese el analisis','onkeypress'=>'return  Vtxt(event);']) !!}
            
-            @error('design_time')
+            @error('marketer_analysis')
                 <span class="text-danger">{{$message}}</span>
             @enderror
         
         </div>
         <div class="form-group">
-            {!! Form::label('design_cost', 'Costo') !!}
-            {!! Form::text('design_cost', null, ['class'=>'form-control','placeholder'=>'Ingrese el un costo','onkeypress'=>'return  Vnum(event);']) !!}
+            {!! Form::label('marketer_planning', 'Plan') !!}
+            {!! Form::text('marketer_planning', null, ['class'=>'form-control','placeholder'=>'Ingrese el plan','onkeypress'=>'return  Vtxt(event);']) !!}
             
-            @error('design_cost')
+            @error('marketer_planning')
                 <span class="text-danger">{{$message}}</span>
             @enderror
         </div>

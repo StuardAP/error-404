@@ -16,7 +16,7 @@
     @endif
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('marketings.create')}}">Agregar marketing</a>
+            <a class="btn btn-warning" href="{{route('marketer.create')}}">Agregar marketer</a>
         </div>
     
     <div class="card-body">
@@ -24,27 +24,25 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Tiempo</th>
-                    <th>Costo</th>
+                    <th>Analysis</th>
+                    <th>Planning</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($marketings as $marketing)
+                @foreach ($marketer as $market)
                     <tr>
-                        <td>{{$marketing->id}}</td>
-                        <td>{{$marketing->marketing_name}}</td>
-                        <td>{{$marketing->marketing_time}}</td>
-                        <td>{{$marketing->marketing_cost}}</td>
+                        <td>{{$market->marketer_id}}</td>
+                        <td>{{$market->marketer_analysis}}</td>
+                        <td>{{$market->marketer_planning}}</td>
                         
                         <td width="10px">
-                            <a href={{ route('marketings.edit',$marketing)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
+                            <a href={{ route('marketer.edit',$market)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
                         </td> 
                        
                         <td width="10px"> 
-                              <form action="{{route('marketings.destroy',$marketing) }}" method="post"  class="eliminar">
+                              <form action="{{route('marketer.destroy',$market) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit"  value="Borrar" class="btn btn-danger btn-sm">

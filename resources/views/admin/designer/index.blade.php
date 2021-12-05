@@ -2,10 +2,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Desarrollo | Lista ')
+@section('title', 'Diseño | Lista ')
 
 @section('content_header')
-    <h1>Lista de Desarrollo</h1>
+    <h1>Lista de Diseños</h1>
 @stop
 
 @section('content')
@@ -14,60 +14,60 @@
         <strong>{{session('info')}}</strong>
     </div>
     @endif
+       
+   
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('develops.create')}}">Agregar desarrollo</a>
+            <a class="btn btn-warning" href="{{route('designer.create')}}">Agregar diseño</a>
         </div>
     
     <div class="card-body">
-        <table    id="develops_T" class="table table-striped table-bordered" style="width:100%">
+        <table  id="designs_T" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Tiempo</th>
-                    <th>Costo</th>
+                    <th>Creativity</th>
+                    <th>Detailer</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($develops as $develop)
+                @foreach ($designer as $design)
                     <tr>
-                        <td>{{$develop->id}}</td>
-                        <td>{{$develop->develop_name}}</td>
-                        <td>{{$develop->develop_time}}</td>
-                        <td>{{$develop->develop_cost}}</td>
+                        <td>{{$design->designer_id}}</td>
+                        <td>{{$design->designer_creativity}}</td>
+                        <td>{{$design->designer_detailer}}</td>
                         
                         <td width="10px">
-                            <a href={{ route('develops.edit',$develop)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
+                            <a href={{ route('designer.edit',$design)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
                         </td> 
                        
                         <td width="10px"> 
-                              <form action="{{route('develops.destroy',$develop) }}" method="post"  class="eliminar">
+                              <form action="{{route('designer.destroy',$design) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
-                                  <input type="submit"  value="Borrar" class="btn btn-danger btn-sm">
+                                  <input type="submit" value="Borrar" class="btn btn-danger btn-sm">
                               </form>
-                            </td>
+                          </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-
 @stop
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css"> 
-<link rel="stylesheet" href="sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="sweetalert2.min.css">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css"/>
+
+
 <style type="text/css">
     div.dt-button-collection button.dt-button:active:not(.disabled), 
     div.dt-button-collection button.dt-button.active:not(.disabled), 
@@ -90,38 +90,39 @@
 
 @section('js')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script>
+<script>
 
-        $('.eliminar').submit(function(e)
-        {
-            e.preventDefault();
-                            Swal.fire({
-                title: '¿Estas seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar!'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                    '¡Eliminado!',
-                    'Su archivo ha sido eliminado',
-                    'success'
-                    )
-                    this.submit();
-                }
-                })
-            });
-   </script>
-   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>  
-   <script>
+     $('.eliminar').submit(function(e)
+     {
+         e.preventDefault();
+                         Swal.fire({
+             title: '¿Estas seguro?',
+             text: "¡No podrás revertir esto!",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Sí, eliminar'
+             }).then((result) => {
+             if (result.isConfirmed) {
+                 Swal.fire(
+                 '¡Eliminado!',
+                 'Su archivo ha sido eliminado',
+                 'success'
+                 )
+                 this.submit();
+             }
+             })
+         });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>  
+
+<script>
     $(document).ready(function() 
     {
-        $('#develops_T').DataTable({
+        $('#designs_T').DataTable({
             dom: 'Bfrtip',
                     buttons:
                          [   {  extend:'colvis',
@@ -349,8 +350,8 @@
 
         );
     });
-</script>   
-  
+</script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
@@ -361,5 +362,4 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
-
 @stop

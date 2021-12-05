@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Marketing | Editar')
+@section('title', 'Diseño | Editar')
 
 @section('content_header')
-    <h1>Editar Marketing</h1>
+    <h1>Editar Diseño</h1>
 @stop
 
 @section('content')
@@ -14,33 +14,25 @@
     @endif
 <div class="card">
     <div class="card-body">
-        {!! Form::model($marketing,['route'=>['marketings.update',$marketing],'method'=>'put']) !!}
+        {!! Form::model($designer,['route'=>['designer.update',$designer],'method'=>'put']) !!}
         
         <div class="form-group">
-            {!! Form::label('marketing_name', 'Nombre') !!}
-            {!! Form::text('marketing_name', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtxt(event);']) !!}
+            {!! Form::label('designer_creativity', 'Creativity') !!}
+            {!! Form::text('designer_creativity', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtxt(event);']) !!}
       
-            @error('marketing_name')
+            @error('designer_creativity')
                 <span class="text-danger">{{$message}}</span>
             @enderror
         
         </div>
         <div class="form-group">
-            {!! Form::label('marketing_time', 'Tiempo') !!}
-            {!! Form::text('marketing_time', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo en semanas','onkeypress'=>'return  Vnum(event);']) !!}
+            {!! Form::label('designer_detailer', 'Detalle') !!}
+            {!! Form::text('designer_detailer', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo en semanas','onkeypress'=>'return  Vnum(event);']) !!}
            
-            @error('marketing_time')
+            @error('designer_detailer')
                 <span class="text-danger">{{$message}}</span>
             @enderror
         
-        </div>
-        <div class="form-group">
-            {!! Form::label('marketing_cost', 'Costo') !!}
-            {!! Form::text('marketing_cost', null, ['class'=>'form-control','placeholder'=>'Ingrese el un costo','onkeypress'=>'return  Vnum(event);']) !!}
-            
-            @error('marketing_cost')
-                <span class="text-danger">{{$message}}</span>
-            @enderror
         </div>
         {!! Form::submit('Actualizar datos', ['class'=>'btn btn-success']) !!}
         {!! Form::close() !!}

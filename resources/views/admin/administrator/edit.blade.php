@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Desarrollo | Editar')
+@section('title', 'Avances | Editar')
 
 @section('content_header')
-    <h1>Editar Desarrollo</h1>
+    <h1>Editar administradores</h1>
 @stop
 
 @section('content')
@@ -14,31 +14,12 @@
     @endif
 <div class="card">
     <div class="card-body">
-        {!! Form::model($develop,['route'=>['develops.update',$develop],'method'=>'put']) !!}
-        
+        {!! Form::model($administrator,['route'=>['administrator.update',$administrator],'method'=>'put']) !!}
+       
         <div class="form-group">
-            {!! Form::label('develop_name', 'Nombre') !!}
-            {!! Form::text('develop_name', null, ['class'=>'form-control','placeholder'=>'Ingrese un nombre','onkeypress'=>'return  Vtxt(event);']) !!}
-      
-            @error('develop_name')
-                <span class="text-danger">{{$message}}</span>
-            @enderror
-        
-        </div>
-        <div class="form-group">
-            {!! Form::label('develop_time', 'Tiempo') !!}
-            {!! Form::text('develop_time', null, ['class'=>'form-control','placeholder'=>'Ingrese un tiempo en semanas','onkeypress'=>'return  Vnum(event);']) !!}
-           
-            @error('develop_time')
-                <span class="text-danger">{{$message}}</span>
-            @enderror
-        
-        </div>
-        <div class="form-group">
-            {!! Form::label('develop_cost', 'Costo') !!}
-            {!! Form::text('develop_cost', null, ['class'=>'form-control','placeholder'=>'Ingrese el un costo','onkeypress'=>'return  Vnum(event);']) !!}
-            
-            @error('develop_cost')
+            {!! Form::label('administrator_discipline', 'Administrator') !!}  
+            {!! Form::text('administrator_discipline', null, ['class'=>'form-control','placeholder'=>'Ingrese el admonistrador','onkeypress'=>'return  Vtxt(event);']) !!}
+            @error('administrator_discipline')
                 <span class="text-danger">{{$message}}</span>
             @enderror
         </div>

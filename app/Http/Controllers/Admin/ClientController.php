@@ -93,7 +93,7 @@ class ClientController extends Controller
                 'client_address' => 'required|max:30',
             ]
         );
-          $client->update($request->all());
+        $client->update($request->all());
         return redirect()->route('clients.edit',$client)->with('info', 'Cliente actualizado correctamente');
     }
 
