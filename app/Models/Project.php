@@ -16,7 +16,7 @@ class Project extends Model
 
      public function employees()
     {
-        return $this->belongsTo('App\Models\Employee','employee_id');
+        return $this->belongsTo(Employee::class,'employee_id');
     }
 
      public function clients()

@@ -27,9 +27,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $employees = Employee::all()->pluck('employee_name', 'uuid');
-        $clients = Client::all()->pluck('client_name', 'uuid');
-        return view('admin.projects.create', compact('employees', 'clients'));
+        $employee_name=Employee::all()->pluck('employee_name', 'uuid');
+        $clients=Client::all()->pluck('client_name', 'uuid');
+        return view('admin.projects.create', compact('employee_name','clients'));
     }
 
     /**

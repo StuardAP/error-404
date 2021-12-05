@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Employee;
+use App\Models\Admistrator;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 
@@ -15,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
+        return view('admin.employees.index', compact('employees'));
     }
 
     /**
@@ -25,7 +27,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $professions=Employee::query()->select('employee_profession')->distinct()->pluck('employee_profession');
+         return view('admin.employees.create', compact('professions'));
     }
 
     /**
@@ -36,7 +39,9 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $employee = Employee::create($request->all());
+        $professions=Employee::query()->select('employee_profession')->distinct()->pluck('employee_profession');
+        return redirect()->route('employees.edit',$employee)->with('success', 'Employee created successfully');
     }
 
     /**
@@ -58,7 +63,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('admin.employees.edit',compact('employee'));
     }
 
     /**

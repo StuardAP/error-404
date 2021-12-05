@@ -229,6 +229,30 @@ return [
             'text' => 'buscar',
         ],
         [
+            'text'=>'Empleados',
+            'icon'=>'fas fa-users',
+            'submenu'=>[
+                [
+                    'text'=>'Listado',
+                    'route'=>'employees.index',
+                    'icon'=>'fas fa-list',
+                ],
+                [
+                    'text'=>'Nuevo',
+                    'route'=>'employees.create',
+                    'icon'=>'fas fa-plus',
+                    'submenu'=>[
+                        [
+                            'text'=>'Nuevo Administrador',
+                            'route'=>'administrators.create',
+                            'icon'=>'fas fa-user',
+                        ],
+
+                        ],
+                ],
+            ]
+        ],
+        [
             'text' => 'Clients',
             'route'  => 'clients.index',
             'icon'    => 'fas fa-fw fa-users',

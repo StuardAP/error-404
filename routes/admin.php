@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SaleReceiptController;
 use App\Http\Controllers\Admin\DetailSaleController;
 use App\Http\Controllers\Admin\DetailProjectController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\AdministratorController;
 
 Route::get('',[AdminController::class ,'index'])->name('admin.home');
 Route::resource('clients', ClientController::class)->name('GET','admin.clients');
@@ -17,3 +19,6 @@ Route::resource('projects', ProjectController::class)->name('GET','admin.project
 Route::resource('sale-receipts', SaleReceiptController::class)->name('GET','admin.sale-receipts');
 Route::resource('detail-sale', DetailSaleController::class)->name('GET','admin.detail-sale');
 Route::resource('detail-project', DetailProjectController::class)->name('GET','admin.detail-project');
+
+Route::resource('employees', EmployeeController::class)->name('GET','admin.employees');
+Route::resource('administrators', AdministratorController::class)->name('GET','admin.administrators');

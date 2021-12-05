@@ -17,9 +17,8 @@ class Employee extends Model
 
      public function administrators()
     {
-        return $this->hasMany(Administrator::class,'employee_name');
+        return $this->hasMany(Administrator::class,'administrator_id');
     }
-
      public function developers()
     {
         return $this->hasMany('App\Models\Developer');

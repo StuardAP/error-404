@@ -12,7 +12,7 @@
                 {!! Form::open(['route'=>'projects.store']) !!}
                     <div class="form-group">
                         {!! Form::label('employee_id', 'Empleado') !!}
-                        {!! Form::select('employee_id',$employees,null, ['class'=>'form-control']) !!}
+                        {!! Form::select('employee_id',$employee_name,null, ['class'=>'form-control']) !!}
                         @error('employee_id')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
