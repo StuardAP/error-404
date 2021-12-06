@@ -2,10 +2,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Administradores | Lista ')
+@section('title', 'Desarrolladores | Lista ')
 
 @section('content_header')
-    <h1>Lista de Administradores</h1>
+    <h1>Lista de Desarrolladores</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
 
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('employees.create')}}">Agregar administradores</a>
+            <a class="btn btn-warning" href="{{route('employees.create')}}">Agregar desarrollador</a>
         </div>
 
     <div class="card-body">
@@ -26,21 +26,21 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Disciplina</th>
+                    <th>Languages</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($administrator as $admin)
-                        <td>{{$admin->administrator_id}}</td>
-                        <td>{{$admin->administrator_discipline}}</td>
+                @foreach ($developer as $develop)
+                        <td>{{$develop->developer_id}}</td>
+                        <td>{{$develop->developer_languages}}</td>
                         <td width="10px">
-                            <a href={{ route('administrators.edit',$admin)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
+                            <a href={{ route('developers.edit',$develop)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
                         </td>
 
                         <td width="10px">
-                              <form action="{{route('administrators.destroy',$admin) }}" method="post"  class="eliminar">
+                              <form action="{{route('developers.destroy',$develop) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit" value="Borrar" class="btn btn-danger btn-sm">
@@ -85,7 +85,40 @@
 @stop
 
 @section('js')
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<<<<<<< HEAD:resources/views/admin/developer/index.blade.php
+   <script>
+    
+        $('.eliminar').submit(function(e)
+        {
+            e.preventDefault();
+                            Swal.fire({
+                title: '¿Estas seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                    '¡Eliminado!',
+                    'Su archivo ha sido eliminado',
+                    'success'
+                    )
+                    this.submit();
+                }
+                })
+            });
+   </script>
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>  
+   <script>
+    $(document).ready(function() 
+=======
 <script>
      $('.eliminar').submit(function(e)
      {
@@ -116,6 +149,7 @@
 
 <script>
     $(document).ready(function()
+>>>>>>> c396ff3b907f0c04541f43776cc442c2d09db808:resources/views/admin/administrators/index.blade.php
     {
         $('#designs_T').DataTable({
             dom: 'Bfrtip',

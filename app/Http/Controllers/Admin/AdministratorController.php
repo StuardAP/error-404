@@ -17,7 +17,8 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        //
+        $administrator = Administrator::all();
+        return view('admin.administrators.index', compact('administrator'));
     }
 
     /**
@@ -62,7 +63,7 @@ class AdministratorController extends Controller
                 'administrator_discipline' => $request->get('administrator_discipline'),
             ]
         );
-        return redirect()->route('administrators.create')->with('info', 'Administrador creado con éxito');
+        return redirect()->route('administrators.index')->with('info', 'Administrador creado con éxito');
     }
 
     /**
@@ -73,7 +74,7 @@ class AdministratorController extends Controller
      */
     public function show(Administrator $administrator)
     {
-        //
+        return view('admin.administrators.show',compact('administrator'));
     }
 
     /**
@@ -96,7 +97,13 @@ class AdministratorController extends Controller
      */
     public function update(UpdateAdministratorRequest $request, Administrator $administrator)
     {
-        //
+        $request->validated(
+            [
+                'administrator_discipline' => 'required|max:20'
+            ]
+        );
+        $administrator->update($request->all());
+        return redirect()->route('administrators.index',$administrator)->with('info', 'Administrador actualizado correctamente');
     }
 
     /**
@@ -107,6 +114,7 @@ class AdministratorController extends Controller
      */
     public function destroy(Administrator $administrator)
     {
-        //
+        $administrator->delete();
+        return redirect()->route('administrators.index')->with('info', 'Administrador eliminado correctamente');
     }
 }

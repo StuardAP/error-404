@@ -1,25 +1,34 @@
 @extends('adminlte::page')
 
-@section('title', 'Empleado | Crear')
+@section('title', ' Empleado | Desarrollador | Crear')
 
 @section('content_header')
-    <h1>Añadir Empleado</h1>
+    <h1>Añadir Desarrollo</h1>
 @stop
 
 @section('content')
         <div class="card">
             <div class="card-body">
-                {!! Form::model($administrator,['route'=>['administrators.update',$administrator],'method'=>'put']) !!}
-                
-                <div class="form-group">
-                    {!! Form::label('administrator_discipline', 'Disciplina') !!}
-                    {!! Form::select('administrator_discipline',array('Good' => 'Buena', 'Fair' => 'Regular','Poor'=>'Bajo'), null, ['class'=>'form-control']) !!}
-
-                    @error('administrator_discipline')
+            
+                {!! Form::open(['route'=>'developers.store']) !!}
+                    <div class="form-group">
+                    {!! Form::label('developer_id', 'Código') !!}
+                    {!! Form::text('developer_id',$developer_id_new,['class'=>'form-control']) !!}
+                    <small id="developer_name" class="form-text text-muted">{{$developer_name_new}}&nbsp{{$developer_lastname_new}}</small>
+                    @error('developer_id')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
-                </div>
-                {!! Form::submit('Agregar Administrador', ['class'=>'btn btn-success']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('developer_languages', 'Languages') !!}
+                        {!! Form::text('developer_languages', null, ['class'=>'form-control','placeholder'=>'Ingrese un lenguaje','onkeypress'=>'return  Vtext(event);']) !!}
+                  
+                        @error('developer_languages')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    
+                    </div>
+                    {!! Form::submit('Agregar Desarrollo', ['class'=>'btn btn-success']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -27,10 +36,13 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
 @stop
 
 @section('js')
-    <script>
+
+
+    <script> 
         function Vnum(evt)
             {
                 var code = (evt.which) ? evt.which : evt.keyCode;
@@ -38,7 +50,7 @@
                 return true;
                 } else if (code >= 48 && code <= 57) {
                 return true;
-                }
+                } 
                 else if(code==46)
                 {
                     return true;
@@ -47,16 +59,18 @@
                 return false;
                 }
             }
+
     function Vtext(evt)
     {
         var code = (evt.which) ? evt.which : evt.keyCode;
-
+        
         if (code == 8 || code==32) {
             return true;
-        }
+        } 
         else if (code >= 48 && code <= 57) {
             return false;
-        }
+        } 
+
         else if(code==46 || code==45)
         {
             return false;
@@ -65,21 +79,20 @@
         {
             return true;
         }
-        else if ((code >=65 && code <=90)||(code >=97 && code <=122))
+
+        else if ((code >=65 && code <=90)||(code >=97 && code <=122)) 
         {
             return true;
-        }
+        } 
+
         else if ( code >=160 && code <=165)
         {
             return true;
         }
+
         else {
             return false;
             }
-    }
+    }   
     </script>
 @stop
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security

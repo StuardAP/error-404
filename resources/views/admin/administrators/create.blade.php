@@ -9,7 +9,9 @@
 @section('content')
         <div class="card">
             <div class="card-body">
-
+                <div class="card-header">
+                    <a class="btn btn-warning" href="{{route('administrators.index')}}">Lista de administradores</a>
+                </div>
             {!! Form::open(['route'=>'administrators.store']) !!}
                 <div class="form-group">
                     {!! Form::label('administrator_id', 'Código') !!}

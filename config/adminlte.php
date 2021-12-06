@@ -238,6 +238,26 @@ return [
                     'icon'=>'fas fa-list',
                 ],
                 [
+                    'text'=>'Administradores',
+                    'route'=>'administrators.index',
+                    'icon'=>'fas fa-list',
+                ],
+                [
+                    'text'=>'Desarrolladores',
+                    'route'=>'developers.index',
+                    'icon'=>'fas fa-list',
+                ],
+                [
+                    'text'=>'Diseñadores',
+                    'route'=>'designers.index',
+                    'icon'=>'fas fa-list',
+                ],
+                [
+                    'text'=>'Comercializadores',
+                    'route'=>'marketers.index',
+                    'icon'=>'fas fa-list',
+                ],
+                [
                     'text'=>'Nuevo',
                     'route'=>'employees.create',
                     'icon'=>'fas fa-plus',
@@ -247,7 +267,21 @@ return [
                             'route'=>'administrators.create',
                             'icon'=>'fas fa-user',
                         ],
-
+                        [
+                            'text'=>'Nuevo Desarrollador',
+                            'route'=>'developers.create',
+                            'icon'=>'fas fa-user',
+                        ],
+                        [
+                            'text'=>'Nuevo Diseñador',
+                            'route'=>'designers.create',
+                            'icon'=>'fas fa-user',
+                        ],
+                        [
+                            'text'=>'Nuevo Comercializador',
+                            'route'=>'marketers.create',
+                            'icon'=>'fas fa-user',
+                        ],
                         ],
                 ],
             ]

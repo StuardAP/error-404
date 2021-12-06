@@ -12,7 +12,7 @@
                 {!! Form::open(['route'=>'employees.store']) !!}
                 <div class="form-group">
                     {!! Form::label('employee_profession', 'Profesión') !!}
-                    {!! Form::select('employee_profession', array('administrator' => 'Administrador', 'developer' => 'Desarrollador','other'=>'Otro'), null, ['class'=>'form-control']) !!}
+                    {!! Form::select('employee_profession', array('administrator' => 'Administrador', 'developer' => 'Desarrollador','designer'=>'Diseñador','marketer'=>'Comercializador'), null, ['class'=>'form-control']) !!}
 
                     @error('employee_profession')
                         <span class="text-danger">{{$message}}</span>

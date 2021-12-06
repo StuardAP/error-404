@@ -9,7 +9,7 @@
 @section('content')
         <div class="card">
             <div class="card-body">
-                {!! Form::model($employee,['route'=>'employees.update',$employee],'method'=>'put') !!}
+                {!! Form::model($employee,['route'=>['employees.update',$employee],'method'=>'put']) !!}
                 <div class="form-group">
                     {!! Form::label('employee_profession', 'Profession') !!}
                     {!! Form::select('employee_profession', array('administrator' => 'Administrador', 'developer' => 'Desarrollador','other'=>'Otro'), null, ['class'=>'form-control','value'=>$employee->employee_profession]) !!}

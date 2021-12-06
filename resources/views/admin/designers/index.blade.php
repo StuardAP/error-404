@@ -2,10 +2,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Administradores | Lista ')
+@section('title', 'Diseñadores | Lista ')
 
 @section('content_header')
-    <h1>Lista de Administradores</h1>
+    <h1>Lista de Diseñadores</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
 
 <div class="card">
         <div class="card-header">
-            <a class="btn btn-warning" href="{{route('employees.create')}}">Agregar administradores</a>
+            <a class="btn btn-warning" href="{{route('employees.create')}}">Agregar diseñador</a>
         </div>
 
     <div class="card-body">
@@ -26,21 +26,23 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Disciplina</th>
+                    <th>Creatividad</th>
+                    <th>Nivel de detalle</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($administrator as $admin)
-                        <td>{{$admin->administrator_id}}</td>
-                        <td>{{$admin->administrator_discipline}}</td>
+                @foreach ($designer as $design)
+                        <td>{{$design->designer_id}}</td>
+                        <td>{{$design->designer_creativity}}</td>
+                        <td>{{$design->designer_detailer}}</td>
                         <td width="10px">
-                            <a href={{ route('administrators.edit',$admin)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
+                            <a href={{ route('designers.edit',$design)}} > <button type="button" class="btn btn-success btn-sm" >Editar</button></a>
                         </td>
 
                         <td width="10px">
-                              <form action="{{route('administrators.destroy',$admin) }}" method="post"  class="eliminar">
+                              <form action="{{route('designers.destroy',$design) }}" method="post"  class="eliminar">
                                   @csrf
                                     @method('delete')
                                   <input type="submit" value="Borrar" class="btn btn-danger btn-sm">
